@@ -13,7 +13,10 @@ const Hero = () => {
           Streamline your car rental experience with out
           effortless process.
         </p>
-        <CustomButton />
+        <CustomButton
+          title='Explore Cars'
+          containerStyles='bg-primary-blue text-white rounded-full mt-10'
+        />
       </div>
     </div>
   );
