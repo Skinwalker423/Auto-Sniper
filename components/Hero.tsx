@@ -26,9 +26,9 @@ const Hero = () => {
       <div className='hero__image-container'>
         <div className='hero__image'>
           <Image
-            src={"/next.svg"}
-            width={300}
-            height={300}
+            src={"/hero.png"}
+            width={500}
+            height={500}
             alt='hero image'
           />
         </div>
