@@ -23,6 +23,16 @@ const Hero = () => {
           handleClick={handleScroll}
         />
       </div>
+      <div className='hero__image-container'>
+        <div className='hero__image'>
+          <Image
+            src={"/next.svg"}
+            width={300}
+            height={300}
+            alt='hero image'
+          />
+        </div>
+      </div>
     </div>
   );
 };
