@@ -1,14 +1,6 @@
 "use client";
-import React, {
-  EventHandler,
-  MouseEventHandler,
-} from "react";
-
-type CustomButtonProps = {
-  title: string;
-  containerStyles: string;
-  handleClick: MouseEventHandler;
-};
+import React from "react";
+import { CustomButtonProps } from "@/types";
 
 const CustomButton = ({
   title,
