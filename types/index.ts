@@ -7,6 +7,6 @@ import {
 export interface CustomButtonProps {
   title: string;
   containerStyles?: string;
-  btnType?: "button" | "submit" | "reset" | undefined;
-  handleClick: MouseEventHandler<HTMLButtonElement>;
+  btnType?: "button" | "submit" | "reset";
+  handleClick?: MouseEventHandler<HTMLButtonElement>;
 }
