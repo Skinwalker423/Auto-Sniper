@@ -46,6 +46,17 @@ const Footer = () => {
           })}
         </div>
       </div>
+      <div className='flex justify-between items-center flex-wrap mt-10 border-7 border-gray-100 sm:px-16 px-6 py-10'>
+        <p>@2023 Auto Sniper. All rights reserved</p>
+        <div className='footer__copyrights-link'>
+          <Link className='text-gray-500' href={"/"}>
+            Privacy Policy
+          </Link>
+          <Link className='text-gray-500' href={"/"}>
+            Terms of Use
+          </Link>
+        </div>
+      </div>
     </footer>
   );
 };
