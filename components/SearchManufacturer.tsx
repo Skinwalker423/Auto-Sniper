@@ -35,8 +35,11 @@ const SearchManufacturer = ({
   };
 
   return (
-    <div>
-      <Combobox>
+    <div className='search-manufacturer'>
+      <Combobox
+        value={manufacturer}
+        onChange={setManufacturer}
+      >
         <div className='relative w-full'>
           <Combobox.Button
             className={"absolute top-[14px]"}
@@ -65,22 +68,54 @@ const SearchManufacturer = ({
           >
             <Combobox.Options>
               {filteredManufacturers.length === 0 &&
-                query === "" && (
-                  <div className='relative cursor-default select-none py-2 px-4 text-gray-700'>
-                    Nothing found.
-                  </div>
-                )}
-              {filteredManufacturers.map(
-                (manufacturer, i) => {
-                  return (
-                    <Combobox.Option
-                      key={i}
-                      value={manufacturer}
-                    >
-                      {manufacturer}
-                    </Combobox.Option>
-                  );
-                }
+              query !== "" ? (
+                <Combobox.Option
+                  className={"search-manufacturer__option"}
+                  value={query}
+                >
+                  Nothing found
+                </Combobox.Option>
+              ) : (
+                filteredManufacturers.map(
+                  (manufacturer, i) => {
+                    return (
+                      <Combobox.Option
+                        className={({ active }) =>
+                          `search-manufacturer__option ${
+                            active
+                              ? "bg-primary-blue text-white"
+                              : "text-gray-900"
+                          }`
+                        }
+                        key={manufacturer}
+                        value={manufacturer}
+                      >
+                        {({ active, selected }) => (
+                          <>
+                            <span
+                              className={`block truncate ${
+                                selected
+                                  ? "font-medium"
+                                  : "font-normal"
+                              }`}
+                            >
+                              {manufacturer}
+                            </span>
+                            {selected ? (
+                              <span
+                                className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
+                                  active
+                                    ? "text-white"
+                                    : "text-teal-600"
+                                }`}
+                              ></span>
+                            ) : null}
+                          </>
+                        )}
+                      </Combobox.Option>
+                    );
+                  }
+                )
               )}
             </Combobox.Options>
           </Transition>
