@@ -3,6 +3,8 @@ import {
   SearchBar,
   CustomFilter,
 } from "@/components";
+import CarCard from "@/components/CarCard";
+import { CarCardProps } from "@/types";
 import { fetchCars } from "@/utils";
 
 export default async function Home() {
@@ -47,7 +49,7 @@ export default async function Home() {
         ) : (
           <section>
             <div className='home__cars-wrapper'>
-              {allCars?.map((car) => {
+              {allCars?.map((car: CarCardProps) => {
                 return <CarCard car={car} />;
               })}
             </div>
