@@ -6,9 +6,13 @@ import {
 import CarCard from "@/components/CarCard";
 import { CarCardProps } from "@/types";
 import { fetchCars } from "@/utils";
+import { carsData } from "../data/cars";
 
 export default async function Home() {
-  const allCars = await fetchCars();
+  const allCars =
+    process.env.NODE_ENV === "production"
+      ? await fetchCars()
+      : carsData;
 
   const isCarsDataEmpty =
     !Array.isArray(allCars) ||
@@ -16,6 +20,7 @@ export default async function Home() {
     allCars.length === 0;
 
   console.log("fetch request for all cars", allCars);
+  console.log("is cars data empty", isCarsDataEmpty);
 
   return (
     <main className='overflow-hidden'>
@@ -49,7 +54,7 @@ export default async function Home() {
         ) : (
           <section>
             <div className='home__cars-wrapper'>
-              {allCars?.map((car: CarCardProps) => {
+              {allCars?.map((car) => {
                 return <CarCard car={car} />;
               })}
             </div>
