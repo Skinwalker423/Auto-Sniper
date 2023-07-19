@@ -1,7 +1,8 @@
-import React from "react";
+"use client";
 import { CarCardProps } from "@/types";
+import React from "react";
 
-const CarCard = ({ car }) => {
+const CarCard = ({ car }: CarCardProps) => {
   return <div>CarCard</div>;
 };
 
