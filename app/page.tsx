@@ -8,6 +8,11 @@ import { fetchCars } from "@/utils";
 export default async function Home() {
   const allCars = await fetchCars();
 
+  const isCarsDataEmpty =
+    !Array.isArray(allCars) ||
+    !allCars ||
+    allCars.length === 0;
+
   console.log("fetch request for all cars", allCars);
 
   return (
@@ -30,6 +35,24 @@ export default async function Home() {
             <CustomFilter title={"year"} />
           </div>
         </div>
+        <section></section>
+
+        {isCarsDataEmpty ? (
+          <div className='home__error-container'>
+            <h2 className='text-black text-xl font-bold'>
+              No results
+            </h2>
+            <p>{allCars?.message}</p>
+          </div>
+        ) : (
+          <section>
+            <div className='home__cars-wrapper'>
+              {allCars?.map((car) => {
+                return <CarCard car={car} />;
+              })}
+            </div>
+          </section>
+        )}
       </div>
     </main>
   );
