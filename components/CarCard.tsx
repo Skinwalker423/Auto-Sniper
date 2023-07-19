@@ -1,6 +1,6 @@
 "use client";
 import { CarCardProps } from "@/types";
-import React from "react";
+import React, { useState } from "react";
 import CustomButton from "./CustomButton";
 import { calculateCarRent } from "@/utils";
 import Image from "next/image";
@@ -14,6 +14,8 @@ const CarCard = ({ car }: CarCardProps) => {
     transmission,
     drive,
   } = car;
+
+  const [isOpen, setIsOpen] = useState(false);
 
   const carRent = calculateCarRent(city_mpg, year);
 
@@ -82,6 +84,9 @@ const CarCard = ({ car }: CarCardProps) => {
           <CustomButton
             title='View More'
             containerStyles='w-full py-[16px] rounded-full bg-primary-blue'
+            textStyles='text-white text-[14px] leading-[17px] font-bold'
+            rightIcon='/right-arrow.svg'
+            handleClick={() => setIsOpen(true)}
           />
         </div>
       </div>
