@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import CustomButton from "./CustomButton";
 import { calculateCarRent } from "@/utils";
 import Image from "next/image";
+import CarDetails from "./CarDetails";
 
 const CarCard = ({ car }: CarCardProps) => {
   const {
@@ -90,6 +91,13 @@ const CarCard = ({ car }: CarCardProps) => {
           />
         </div>
       </div>
+      {isOpen && (
+        <CarDetails
+          car={car}
+          isOpen={isOpen}
+          closeModal={() => setIsOpen(false)}
+        />
+      )}
     </div>
   );
 };

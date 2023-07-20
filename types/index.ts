@@ -18,6 +18,7 @@ export interface CustomButtonProps {
   handleClick?: MouseEventHandler<HTMLButtonElement>;
   textStyles?: string;
   rightIcon?: string;
+  isDisabled?: boolean;
 }
 
 export interface CarProps {
