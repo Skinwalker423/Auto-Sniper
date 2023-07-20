@@ -16,6 +16,23 @@ const CarDetails = ({
   closeModal,
   car,
 }: CarDetailsProps) => {
+  const carMap = Object.entries(car).map(
+    ([keys, values]) => {
+      return (
+        <div
+          className='flex justify-between items-center gap-5 w-full text-right'
+          key={keys}
+        >
+          <h4 className='text-grey capitalize'>
+            {keys.replace("_", " ")}
+          </h4>
+          <p>{values}</p>
+        </div>
+      );
+    }
+  );
+  console.log("keys", carMap);
+
   return (
     <>
       <Transition as={Fragment} show={isOpen} appear>
@@ -47,7 +64,7 @@ const CarDetails = ({
               >
                 <Dialog.Panel
                   className={
-                    "relative w-full max-h-[90vh] bg-white max-w-6xl overflow-y-auto transform rounded-2xl text-left shadow-xl transition-all flex flex-col gap-5"
+                    "relative w-full max-h-[90vh] bg-white max-w-6xl overflow-y-auto transform rounded-2xl text-left shadow-xl transition-all flex flex-col gap-5 p-6"
                   }
                 >
                   <button
@@ -102,6 +119,13 @@ const CarDetails = ({
                         />
                       </div>
                     </div>
+                  </div>
+
+                  <div className='flex flex-1 flex-col gap-2'>
+                    <h2 className='text-xl capitalize font-bold'>
+                      {car.make} {car.model}
+                    </h2>
+                    {carMap}
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
