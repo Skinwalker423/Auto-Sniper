@@ -11,7 +11,7 @@ import { carsData } from "../data/cars";
 export default async function Home({ searchParams }) {
   console.log("search params", searchParams);
   const allCars =
-    process.env.NODE_ENV === "production"
+    process.env.NODE_ENV !== "production"
       ? await fetchCars({
           model: searchParams.model || "",
           manufacturer: searchParams.manufacturer || "",
