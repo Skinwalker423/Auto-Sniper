@@ -8,7 +8,8 @@ import { CarCardProps } from "@/types";
 import { fetchCars } from "@/utils";
 import { carsData } from "../data/cars";
 
-export default async function Home() {
+export default async function Home({ searchParams }) {
+  console.log("search params", searchParams);
   const allCars =
     process.env.NODE_ENV === "production"
       ? await fetchCars()
