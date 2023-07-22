@@ -12,7 +12,13 @@ export default async function Home({ searchParams }) {
   console.log("search params", searchParams);
   const allCars =
     process.env.NODE_ENV === "production"
-      ? await fetchCars()
+      ? await fetchCars({
+          model: searchParams.model || "",
+          manufacturer: searchParams.manufacturer || "",
+          year: searchParams.year || 2022,
+          limit: searchParams.limit || 10,
+          fuel: searchParams.fuel || "",
+        })
       : carsData;
 
   const isCarsDataEmpty =

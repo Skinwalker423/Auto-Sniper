@@ -39,3 +39,11 @@ export interface CarProps {
 export interface CarCardProps {
   car: CarProps;
 }
+
+export interface FilterProps {
+  model: string;
+  manufacturer: string;
+  year: number;
+  limit: number;
+  fuel: string;
+}
