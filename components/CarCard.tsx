@@ -5,6 +5,7 @@ import CustomButton from "./CustomButton";
 import { calculateCarRent } from "@/utils";
 import Image from "next/image";
 import CarDetails from "./CarDetails";
+import { generateCarImageUrl } from "@/utils";
 
 const CarCard = ({ car }: CarCardProps) => {
   const {
@@ -19,6 +20,8 @@ const CarCard = ({ car }: CarCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const carRent = calculateCarRent(city_mpg, year);
+
+  const carImage = generateCarImageUrl(car);
 
   return (
     <div className='car-card group'>
@@ -38,7 +41,7 @@ const CarCard = ({ car }: CarCardProps) => {
       </p>
       <div className='relative w-full h-40 my-3 object-contain'>
         <Image
-          src={"/hero.png"}
+          src={carImage}
           fill
           className='object-contain'
           alt={`logo for ${make} ${model}`}
