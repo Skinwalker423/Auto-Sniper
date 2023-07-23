@@ -1,15 +1,42 @@
 "use client";
 
-import { CustomFilterProps } from "@/types";
+import { CustomFilterProps, OptionProps } from "@/types";
 import { Listbox, Transition } from "@headlessui/react";
 import Image from "next/image";
-import React, { Fragment, useState } from "react";
+import React, {
+  Fragment,
+  useEffect,
+  useState,
+} from "react";
+import { useRouter } from "next/navigation";
 
 const CustomFilter = ({
   title,
   options,
 }: CustomFilterProps) => {
   const [selected, setSelected] = useState(options[0]);
+  const router = useRouter();
+
+  const updatedSearchParams = (selected: OptionProps) => {
+    const searchParams = new URLSearchParams(
+      window.location.search
+    );
+    console.log(selected.value);
+    const newUrl = `${
+      window.location.pathname
+    }?${searchParams.toString()}&${title.toLocaleLowerCase()}=${
+      selected.value
+    }#search-header`;
+
+    router.push(newUrl);
+  };
+
+  useEffect(() => {
+    if (selected.value !== "") {
+      updatedSearchParams(selected);
+    }
+  }, [selected]);
+
   return (
     <div className='w-fit'>
       <Listbox
@@ -51,7 +78,17 @@ const CustomFilter = ({
                     value={option}
                   >
                     {({ selected }) => {
-                      return <span>{option.title}</span>;
+                      return (
+                        <span
+                          className={`block truncate ${
+                            selected
+                              ? "font-medium"
+                              : "font-normal"
+                          }`}
+                        >
+                          {option.title}
+                        </span>
+                      );
                     }}
                   </Listbox.Option>
                 );

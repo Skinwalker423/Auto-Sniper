@@ -12,6 +12,7 @@ export const SearchBar = () => {
   const [model, setModel] = useState("");
 
   const router = useRouter();
+
   const updatedSearchParams = (
     model: string,
     manufacturer: string
@@ -32,7 +33,7 @@ export const SearchBar = () => {
 
     const newUrl = `${
       window.location.pathname
-    }?${searchParams.toString()}#search-header`;
+    }?${searchParams.toString()}`;
 
     router.push(newUrl);
   };
