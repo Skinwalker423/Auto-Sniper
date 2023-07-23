@@ -1,10 +1,11 @@
 "use client";
 
-import { FormEvent, FormEventHandler, use } from "react";
+import { FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { SearchManufacturer } from "./";
 import Image from "next/image";
+import Link from "next/link";
 
 export const SearchBar = () => {
   const [manufacturer, setManufacturer] = useState("");
@@ -31,7 +32,7 @@ export const SearchBar = () => {
 
     const newUrl = `${
       window.location.pathname
-    }?${searchParams.toString()}`;
+    }?${searchParams.toString()}#search-header`;
 
     router.push(newUrl);
   };

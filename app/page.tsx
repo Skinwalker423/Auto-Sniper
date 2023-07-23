@@ -4,11 +4,15 @@ import {
   CustomFilter,
 } from "@/components";
 import CarCard from "@/components/CarCard";
-import { CarCardProps } from "@/types";
+import { CarCardProps, FilterProps } from "@/types";
 import { fetchCars } from "@/utils";
 import { carsData } from "../data/cars";
 
-export default async function Home({ searchParams }) {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: FilterProps;
+}) {
   console.log("search params", searchParams);
   const allCars =
     process.env.NODE_ENV !== "production"
@@ -37,7 +41,10 @@ export default async function Home({ searchParams }) {
         id='discover'
       >
         <div className='home__text-container'>
-          <h1 className='text-4xl font-extrabold'>
+          <h1
+            id='search-header'
+            className='text-4xl font-extrabold'
+          >
             Car Catalogue
           </h1>
           <p>Explore the cars you might like</p>
@@ -59,7 +66,7 @@ export default async function Home({ searchParams }) {
             <p>{allCars?.message}</p>
           </div>
         ) : (
-          <section>
+          <section id='carlist'>
             <div className='home__cars-wrapper'>
               {allCars?.map((car) => {
                 return <CarCard car={car} />;
