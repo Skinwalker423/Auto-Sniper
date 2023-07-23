@@ -7,6 +7,7 @@ import CarCard from "@/components/CarCard";
 import { CarCardProps, FilterProps } from "@/types";
 import { fetchCars } from "@/utils";
 import { carsData } from "../data/cars";
+import { fuels, yearsOfProduction } from "@/constants";
 
 export default async function Home({
   searchParams,
@@ -52,8 +53,11 @@ export default async function Home({
         <div className='home__filters'>
           <SearchBar />
           <div className='home__filter-container'>
-            <CustomFilter title={"fuel"} />
-            <CustomFilter title={"year"} />
+            <CustomFilter title={"fuel"} options={fuels} />
+            <CustomFilter
+              title={"year"}
+              options={yearsOfProduction}
+            />
           </div>
         </div>
         <section></section>
