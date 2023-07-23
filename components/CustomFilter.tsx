@@ -9,6 +9,7 @@ import React, {
   useState,
 } from "react";
 import { useRouter } from "next/navigation";
+import { updateSearchParams } from "@/utils";
 
 const CustomFilter = ({
   title,
@@ -17,31 +18,26 @@ const CustomFilter = ({
   const [selected, setSelected] = useState(options[0]);
   const router = useRouter();
 
-  const updatedSearchParams = (selected: OptionProps) => {
-    const searchParams = new URLSearchParams(
-      window.location.search
+  const updatedSearchParams = (e: {
+    title: string;
+    value: string;
+  }) => {
+    const newUrl = updateSearchParams(
+      title.toLowerCase(),
+      e.value.toLowerCase()
     );
-    console.log(selected.value);
-    const newUrl = `${
-      window.location.pathname
-    }?${searchParams.toString()}&${title.toLocaleLowerCase()}=${
-      selected.value
-    }#search-header`;
 
     router.push(newUrl);
   };
-
-  useEffect(() => {
-    if (selected.value !== "") {
-      updatedSearchParams(selected);
-    }
-  }, [selected]);
 
   return (
     <div className='w-fit'>
       <Listbox
         value={selected}
-        onChange={(e) => setSelected(e)}
+        onChange={(e) => {
+          setSelected(e);
+          updatedSearchParams(e);
+        }}
       >
         <div className='relative w-fit z-10'>
           <Listbox.Button className={"custom-filter__btn"}>
